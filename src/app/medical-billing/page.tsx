@@ -13,6 +13,8 @@ export const metadata: Metadata = {
     "revenue cycle management staffing",
     "insurance verification outsourcing",
     "claims processing support",
+    "remote patient monitoring staffing",
+    "RPM support staff",
   ],
 };
 
@@ -40,6 +42,10 @@ const benefits = [
   {
     title: "Reporting & Analytics Support",
     body: "Billing performance reports, KPI dashboards, and payer analysis to help your team make data-informed decisions.",
+  },
+  {
+    title: "Remote Patient Monitoring (RPM)",
+    body: "Remote Patient Monitoring specialists who assist with device monitoring, patient follow-ups, documentation, and coordination with healthcare providers.",
   },
 ];
 

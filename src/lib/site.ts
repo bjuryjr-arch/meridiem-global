@@ -10,7 +10,7 @@ export const siteConfig = {
     { href: "/how-it-works", label: "How It Works" },
     { href: "/savings-calculator", label: "Savings" },
     { href: "/qsr-staffing", label: "QSR" },
-    { href: "/medical-billing", label: "Medical" },
+    { href: "/medical-billing", label: "Medical Billing" },
     { href: "/about", label: "About" },
     { href: "/contact", label: "Contact" },
   ],
