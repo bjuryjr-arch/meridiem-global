@@ -84,7 +84,7 @@ export default function RpmSupportPage() {
               and reporting specialists managed and supported by Meridiem Global.
             </p>
             <div className="mt-10 flex flex-wrap gap-4">
-              <Link href="/contact" className="btn-primary">Book a Consultation</Link>
+              <Link href="/contact" className="btn-primary">Book a Free Consultation</Link>
               <Link href="/savings-calculator" className="btn-ghost">Calculate Your Savings</Link>
             </div>
             <div className="mt-14 flex flex-wrap items-center gap-x-8 gap-y-3 border-t border-white/[0.07] pt-8 text-xs font-medium tracking-[0.12em] text-[#b8b4a8] uppercase">
@@ -217,7 +217,7 @@ export default function RpmSupportPage() {
               while significantly reducing administrative costs.
             </p>
             <div className="mt-10 flex flex-wrap justify-center gap-4">
-              <Link href="/contact" className="btn-primary">Book a Consultation</Link>
+              <Link href="/contact" className="btn-primary">Book a Free Consultation</Link>
               <Link href="/medical-billing" className="btn-ghost">Medical Billing Outsourcing</Link>
             </div>
           </div>

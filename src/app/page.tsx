@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { SavingsCalculator } from "@/components/savings-calculator";
+import { FaqAccordion } from "@/components/faq-accordion";
 
 export const metadata: Metadata = {
   title: "Overseas Staffing for U.S. Companies",
@@ -48,10 +49,13 @@ export default function Home() {
               Meridiem Global helps U.S. businesses scale efficiently with elite overseas talent, structured workflows, and operational clarity.
             </p>
             <div className="mt-10 flex flex-wrap gap-4">
-              <Link href="/contact" className="btn-primary">Book a 15-Minute Strategy Call</Link>
+              <Link href="/contact" className="btn-primary">See If You&rsquo;re Ready to Scale</Link>
               <Link href="/services" className="btn-ghost">See Roles We Place</Link>
             </div>
-            <p className="mt-6 text-sm text-[#b8b4a8]">
+            <p className="mt-4 text-[0.75rem] text-[#b8b4a8]/70 tracking-[0.02em]">
+              No commitment. We&rsquo;ll tell you if this actually makes sense for your business.
+            </p>
+            <p className="mt-3 text-sm text-[#b8b4a8]">
               See how companies are scaling faster while reducing payroll costs by up to 70%.
             </p>
             <div className="mt-10 flex flex-wrap items-center gap-x-8 gap-y-3 border-t border-white/[0.07] pt-8 text-xs font-medium tracking-[0.12em] text-[#b8b4a8] uppercase">
@@ -80,6 +84,53 @@ export default function Home() {
               </span>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════
+          TRUST INDICATORS
+      ══════════════════════════════════════ */}
+      <section className="container pb-10">
+        <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
+          {[
+            {
+              value: "U.S.-Managed",
+              label: "Operations",
+              detail: "Supervised by U.S.-based team leads",
+            },
+            {
+              value: "Pre-Vetted",
+              label: "Talent",
+              detail: "Screened, tested, and qualified",
+            },
+            {
+              value: "Seamless",
+              label: "Team Integration",
+              detail: "Built for accountability from day one",
+            },
+            {
+              value: "60–70%",
+              label: "Cost Savings",
+              detail: "vs. equivalent U.S.-based hires",
+            },
+          ].map(({ value, label, detail }) => (
+            <div
+              key={label}
+              className="flex flex-col rounded-2xl border border-white/[0.07] bg-[#080c20] px-6 py-6"
+            >
+              <p
+                className="text-[1.65rem] font-semibold leading-none cream-text"
+                style={{ fontFamily: "var(--font-cormorant)" }}
+              >
+                {value}
+              </p>
+              <p className="mt-1 text-[0.75rem] font-medium tracking-[0.18em] text-[#f5f2ea] uppercase">
+                {label}
+              </p>
+              <div className="cream-accent my-3 h-[1px] w-6 rounded-full" />
+              <p className="text-[0.72rem] leading-relaxed text-[#b8b4a8]">{detail}</p>
+            </div>
+          ))}
         </div>
       </section>
 
@@ -163,9 +214,9 @@ export default function Home() {
           </h2>
           <div className="mt-12 grid gap-5 md:grid-cols-3">
             {[
-              { n: "01", title: "Tell Us What You Need",  body: "Schedule a short strategy call. We learn the role, schedule, and workflow requirements." },
-              { n: "02", title: "We Source & Vet Talent", body: "Our recruiters identify, screen, and shortlist top global professionals for your review." },
-              { n: "03", title: "Your Team Scales",       body: "Onboard your dedicated team member and start reducing operational costs immediately." },
+              { n: "01", title: "Define Your Needs",          body: "Tell us the role, schedule, and goals. We handle everything from there." },
+              { n: "02", title: "Get Matched with Talent",    body: "We source, vet, and shortlist qualified candidates built for your business." },
+              { n: "03", title: "Start Scaling",              body: "Onboard your new team member and reduce costs from day one." },
             ].map((s, i, arr) => (
               <div key={s.n} className="relative flex flex-col">
                 {i < arr.length - 1 && (
@@ -178,7 +229,7 @@ export default function Home() {
             ))}
           </div>
           <div className="mt-10 flex flex-wrap items-center gap-5 border-t border-white/[0.07] pt-8">
-            <Link href="/contact" className="btn-primary">Book a 15-Minute Strategy Call</Link>
+            <Link href="/contact" className="btn-primary">Start Scaling Responsibly</Link>
             <Link href="/how-it-works" className="text-sm tracking-[0.08em] text-[#e8e0c8] uppercase hover:text-white transition">
               See full process →
             </Link>
@@ -211,7 +262,7 @@ export default function Home() {
                 For solopreneurs and growing businesses, this can be the difference between a successful long-term hire and an added headache.
               </p>
               <Link href="/contact" className="btn-primary mt-9 inline-flex">
-                Book an Operational Consultation
+                Book a Free Consultation
               </Link>
             </div>
             <div className="flex flex-col gap-4">
@@ -280,6 +331,11 @@ export default function Home() {
       </section>
 
       {/* ══════════════════════════════════════
+          FAQ ACCORDION
+      ══════════════════════════════════════ */}
+      <FaqAccordion />
+
+      {/* ══════════════════════════════════════
           FINAL CTA
       ══════════════════════════════════════ */}
       <section className="container py-20">
@@ -296,7 +352,7 @@ export default function Home() {
               Talk with Meridiem Global to design a staffing strategy that improves productivity, protects customer experience, and reduces operating costs.
             </p>
             <div className="mt-10 flex flex-wrap justify-center gap-4">
-              <Link href="/contact" className="btn-primary">Book a Consultation</Link>
+              <Link href="/contact" className="btn-primary">Start Scaling Responsibly</Link>
               <Link href="/savings-calculator" className="btn-ghost">Calculate Your Savings</Link>
             </div>
           </div>

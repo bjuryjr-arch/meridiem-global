@@ -92,7 +92,7 @@ export function SiteHeader() {
         {/* Desktop CTA */}
         <Link href="/contact"
           className="hidden rounded-full border border-[rgba(232,224,200,0.22)] px-5 py-2 text-[0.72rem] font-medium tracking-[0.12em] text-[#e8e0c8] uppercase transition hover:border-[rgba(232,224,200,0.5)] hover:bg-[rgba(232,224,200,0.04)] md:inline-flex">
-          Book Consultation
+          See If You&rsquo;re Ready to Scale
         </Link>
 
         {/* Mobile hamburger */}
@@ -131,7 +131,7 @@ export function SiteHeader() {
           ))}
           <Link href="/contact" onClick={() => setMenuOpen(false)}
             className="mt-4 block w-full rounded-full border border-[rgba(232,224,200,0.22)] py-2.5 text-center text-xs tracking-[0.12em] text-[#e8e0c8] uppercase">
-            Book Consultation
+            See If You&rsquo;re Ready to Scale
           </Link>
         </nav>
       )}

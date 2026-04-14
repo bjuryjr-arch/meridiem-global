@@ -90,7 +90,7 @@ export default function GeneralBusinessPage() {
               Meridiem Global places elite overseas professionals in administrative, operational, and customer-facing roles — giving your business the structured support it needs to scale without the overhead of domestic hiring.
             </p>
             <div className="mt-10 flex flex-wrap gap-4">
-              <Link href="/contact" className="btn-primary">Book a Strategy Call</Link>
+              <Link href="/contact" className="btn-primary">Start Scaling Responsibly</Link>
               <Link href="/savings-calculator" className="btn-ghost">Calculate Your Savings</Link>
             </div>
             <div className="mt-14 flex flex-wrap items-center gap-x-8 gap-y-3 border-t border-white/[0.07] pt-8 text-xs font-medium tracking-[0.12em] text-[#b8b4a8] uppercase">
@@ -248,7 +248,7 @@ export default function GeneralBusinessPage() {
               Book a strategy call to explore which support roles will create the most immediate impact for your operations.
             </p>
             <div className="mt-10 flex flex-wrap justify-center gap-4">
-              <Link href="/contact" className="btn-primary">Book a Strategy Call</Link>
+              <Link href="/contact" className="btn-primary">Start Scaling Responsibly</Link>
               <Link href="/savings-calculator" className="btn-ghost">Estimate Your Savings</Link>
             </div>
           </div>

@@ -28,7 +28,7 @@ export function SiteFooter() {
           <p className="text-sm leading-relaxed text-[#b8b4a8]">{siteConfig.description}</p>
           <Link href="/contact"
             className="mt-6 inline-block rounded-full border border-[rgba(232,224,200,0.2)] px-5 py-2 text-[0.72rem] tracking-[0.1em] text-[#e8e0c8] uppercase transition hover:border-[rgba(232,224,200,0.45)]">
-            Book a Consultation
+            Start Scaling Responsibly
           </Link>
         </div>
 
@@ -42,6 +42,7 @@ export function SiteFooter() {
             <li><Link href="/savings-calculator"  className="hover:text-[#e8e0c8] transition">Savings Calculator</Link></li>
             <li><Link href="/about"               className="hover:text-[#e8e0c8] transition">About</Link></li>
             <li><Link href="/contact"             className="hover:text-[#e8e0c8] transition">Contact</Link></li>
+            <li><Link href="/careers"             className="hover:text-[#e8e0c8] transition">Careers</Link></li>
           </ul>
         </div>
 

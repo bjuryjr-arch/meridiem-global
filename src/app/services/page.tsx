@@ -44,7 +44,7 @@ export default function ServicesPage() {
           href="/contact"
           className="mt-6 inline-block rounded-full bg-gradient-to-r from-[#0d2f67] to-[#153f87] px-6 py-3 text-sm font-semibold text-white"
         >
-          Book a Consultation
+          See If You&rsquo;re Ready to Scale
         </Link>
       </section>
     </main>

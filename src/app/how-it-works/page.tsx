@@ -38,7 +38,7 @@ export default function HowItWorksPage() {
           href="/contact"
           className="mt-6 inline-block rounded-full border border-slate-500 bg-slate-900/70 px-6 py-3 text-sm font-semibold text-slate-100"
         >
-          Start With a Strategy Consultation
+          Start Scaling Responsibly
         </Link>
       </section>
     </main>
