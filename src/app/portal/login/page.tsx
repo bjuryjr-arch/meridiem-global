@@ -49,37 +49,83 @@ export default function LoginPage() {
 
       {/* ── Left brand panel ─────────────────────────────────────────────────── */}
       <div className="hidden md:flex md:w-[44%] bg-[#091929] flex-col justify-between p-12 relative overflow-hidden">
-        <div
-          className="pointer-events-none absolute inset-0"
-          style={{ background: "radial-gradient(ellipse at 20% 30%, rgba(26,58,122,0.5) 0%, transparent 65%)" }}
-        />
 
+        {/* Ambient navy glow — pure brand navy, no purple */}
+        <div className="pointer-events-none absolute inset-0" style={{
+          background: "radial-gradient(ellipse at 25% 35%, rgba(13,34,53,0.9) 0%, transparent 60%)",
+        }} />
+
+        {/* Globe animation keyframes */}
+        <style>{`
+          @keyframes globe-breathe {
+            0%, 100% { opacity: 0.28; transform: translateY(-50%) scale(1); }
+            50%       { opacity: 0.34; transform: translateY(-50%) scale(1.018); }
+          }
+        `}</style>
+
+        {/* Globe — larger, centered-right, watermark-style with clear definition */}
+        <div className="pointer-events-none absolute select-none" style={{
+          right: "-10%", top: "50%",
+          width: "min(640px, 115%)", height: "min(640px, 115%)",
+          mixBlendMode: "screen",
+          animation: "globe-breathe 14s ease-in-out infinite",
+          willChange: "transform, opacity",
+        }}>
+          <Image src="/meridiem-logo-transparent.png" alt="" fill className="object-contain" priority />
+        </div>
+
+        {/* Soft left-edge fade — blends globe into background without boxing it */}
+        <div className="pointer-events-none absolute inset-0" style={{
+          background: "linear-gradient(to right, #091929 0%, #091929 18%, transparent 52%)",
+        }} />
+
+        {/* Soft top/bottom fade — keeps globe atmospheric */}
+        <div className="pointer-events-none absolute inset-0" style={{
+          background: "linear-gradient(to bottom, #091929 0%, transparent 20%, transparent 80%, #091929 100%)",
+        }} />
+
+        {/* Content */}
         <div className="relative">
+          {/* Cream accent line */}
+          <div className="mb-10 h-[1.5px] w-12 rounded-full" style={{
+            background: "linear-gradient(90deg, rgba(232,224,200,0.6), rgba(232,224,200,0.1))",
+          }} />
+
+          {/* Wordmark */}
           <div className="flex items-center gap-3.5 mb-14">
-            <Image src="/meridiem-logo.png" alt="Meridiem Global" width={52} height={52}
-              className="rounded-xl object-contain shrink-0" />
+            <Image src="/meridiem-logo-transparent.png" alt="Meridiem Global" width={44} height={44}
+              className="object-contain shrink-0 opacity-90" />
             <div>
-              <p className="text-white font-semibold text-xl leading-none tracking-tight">Meridiem Global</p>
-              <p className="text-white/40 text-[11px] mt-1 uppercase tracking-widest">Client Portal</p>
+              <p className="text-[0.72rem] font-medium tracking-[0.28em] text-[#e8e0c8] uppercase">Meridiem Global</p>
+              <p className="text-white/30 text-[10px] mt-0.5 uppercase tracking-widest">Client Portal</p>
             </div>
           </div>
 
-          <h1 className="text-4xl font-semibold text-white leading-[1.15] mb-4">
-            Your Workforce,<br />Fully Visible
+          <h1 className="text-[2.6rem] font-semibold text-white leading-[1.1] mb-4"
+            style={{ fontFamily: "var(--font-cormorant)" }}>
+            Your Workforce,<br />
+            <em className="not-italic" style={{
+              background: "linear-gradient(135deg, #e8e0c8 0%, #c8a96e 100%)",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+            }}>Fully Visible</em>
           </h1>
           <p className="text-white/50 text-sm leading-relaxed max-w-xs">
             Track hours, manage billing, request support, and monitor your remote team — all in one place.
           </p>
 
-          <div className="mt-10 space-y-3">
+          <div className="mt-10 space-y-3 pt-8" style={{
+            borderTop: "1px solid transparent",
+            borderImage: "linear-gradient(90deg, rgba(232,224,200,0.15) 0%, rgba(232,224,200,0.07) 50%, transparent 100%) 1",
+          }}>
             {[
               "Real-time hours & activity tracking",
               "Invoice management & AutoPay",
               "AI-powered support assistant",
               "Hiring & replacement requests",
             ].map(f => (
-              <div key={f} className="flex items-center gap-2.5 text-sm text-white/55">
-                <div className="h-1.5 w-1.5 rounded-full bg-[#c8a96e] shrink-0" />
+              <div key={f} className="flex items-center gap-2.5 text-xs text-white/55 tracking-[0.04em]">
+                <span className="inline-block h-1 w-1 rounded-full bg-[#e8e0c8]/60 shrink-0" />
                 {f}
               </div>
             ))}
@@ -95,10 +141,12 @@ export default function LoginPage() {
 
           {/* Mobile logo */}
           <div className="flex items-center gap-3 mb-10 md:hidden">
-            <Image src="/meridiem-logo.png" alt="Meridiem Global" width={40} height={40}
-              className="rounded-xl object-contain shrink-0" />
+            <div className="h-9 w-9 rounded-lg bg-[#06091a] flex items-center justify-center shrink-0">
+              <Image src="/meridiem-logo-transparent.png" alt="Meridiem Global" width={32} height={32}
+                className="object-contain" />
+            </div>
             <div>
-              <p className="text-sm font-semibold text-[#091929] leading-none">Meridiem Global</p>
+              <p className="text-sm font-semibold text-[#091929] leading-none tracking-tight">Meridiem Global</p>
               <p className="text-[10px] text-[#394452] mt-0.5 uppercase tracking-widest">Client Portal</p>
             </div>
           </div>

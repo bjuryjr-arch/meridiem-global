@@ -11,7 +11,6 @@ const services = [
 ];
 
 const mainNav = [
-  { href: "/",                   label: "Home" },
   { href: "/how-it-works",       label: "How It Works" },
   { href: "/savings-calculator", label: "Savings" },
   { href: "/about",              label: "About" },
@@ -41,8 +40,8 @@ export function SiteHeader() {
           </span>
         </Link>
 
-        {/* Desktop nav — Services dropdown removed for space */}
-        <nav className="hidden items-center gap-7 md:flex">
+        {/* Desktop nav */}
+        <nav className="hidden items-center gap-8 md:flex">
           {mainNav.map(({ href, label }) => (
             <Link key={href} href={href}
               className="whitespace-nowrap text-[0.76rem] font-medium tracking-[0.08em] text-[#b8b4a8] uppercase transition hover:text-[#e8e0c8]">
