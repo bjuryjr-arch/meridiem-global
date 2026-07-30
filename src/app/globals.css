@@ -1,0 +1,1064 @@
+@import "tailwindcss";
+
+/* ─────────────────────────────────────────
+   Meridiem Global — Design Tokens
+   Palette: deep navy · cream · white · subtle accent
+───────────────────────────────────────── */
+:root {
+  --bg-main:       #06091a;
+  --bg-section:    #080c20;
+  --bg-card:       #0c1128;
+  --text-primary:  #f5f2ea;   /* cream-white */
+  --text-secondary:#c8c4b8;   /* warmer, higher contrast reading grey for body */
+  --cream:         #e8e0c8;   /* logo cream */
+  --cream-light:   #f0ead8;
+  --accent-navy:   #0d2f67;
+  --accent-navy-2: #153f87;
+  --border:        rgba(232, 224, 200, 0.14);
+}
+
+@theme inline {
+  --font-sans:    var(--font-jost);
+  --font-heading: var(--font-cormorant);
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  /* Single left-origin light source — one radial, one directional wash */
+  background:
+    linear-gradient(to right, rgba(10, 20, 54, 0.13) 0%, transparent 46%),
+    radial-gradient(ellipse at 14% -4%, rgba(10, 32, 76, 0.20), transparent 36%),
+    var(--bg-main);
+  color: var(--text-primary);
+  font-family: var(--font-jost), sans-serif;
+  font-weight: 300;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Headings use Cormorant Garamond ── */
+h1, h2, h3, h4 {
+  font-family: var(--font-cormorant), serif;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.08;
+}
+
+/* ── Base layer: anchor reset (inside @layer so Tailwind utilities can override) ── */
+@layer base {
+  a { color: inherit; text-decoration: none; }
+}
+
+main { min-height: calc(100vh - 176px); }
+
+/* ── Layout ── */
+.container {
+  margin-inline: auto;
+  width: min(1120px, calc(100% - 3rem));
+}
+
+/* ── Card surface — left-lighter → right-deeper, unified with hero ── */
+.surface {
+  border: 1px solid var(--border);
+  background: linear-gradient(to right, rgba(15, 19, 44, 0.97) 0%, rgba(11, 15, 36, 0.985) 52%, rgba(8, 11, 28, 0.995) 100%);
+}
+
+/* ── Inner card (nested dark cards inside surface sections) ── */
+.card-dark {
+  background: linear-gradient(to right, rgba(14, 17, 40, 1) 0%, rgba(11, 15, 34, 1) 52%, rgba(8, 12, 26, 1) 100%);
+}
+
+/* ── Cream accent line (replaces sunrise) ── */
+.cream-accent {
+  background: linear-gradient(90deg, var(--cream), rgba(232, 224, 200, 0));
+}
+
+/* ── Cream gradient text  ── */
+.cream-text {
+  background: linear-gradient(120deg, var(--cream-light) 0%, var(--cream) 60%, #c8bfa0 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ── Large watermark helper ── */
+.watermark {
+  pointer-events: none;
+  user-select: none;
+  position: absolute;
+  opacity: 0.04;
+}
+
+/* ── Form inputs ── */
+.input {
+  width: 100%;
+  border-radius: 0.75rem;
+  border: 1px solid rgba(232, 224, 200, 0.18);
+  background: rgba(6, 9, 26, 0.85);
+  padding: 0.7rem 0.9rem;
+  color: var(--text-primary);
+  outline: none;
+  font-family: var(--font-jost), sans-serif;
+  font-size: 0.9rem;
+  transition: border-color 0.15s;
+}
+.input:focus {
+  border-color: rgba(232, 224, 200, 0.45);
+  box-shadow: 0 0 0 2px rgba(232, 224, 200, 0.08);
+}
+
+/* ── Primary CTA button — deep navy, gold glow on hover ── */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  border-radius: 9999px;
+  background: linear-gradient(to right, #0a2040 0%, #071B33 52%, #051428 100%);
+  padding: 0.8rem 1.75rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: #fff;
+  text-transform: uppercase;
+  box-shadow: 0 4px 28px rgba(7, 27, 51, 0.5), inset 0 1px 0 rgba(255,255,255,0.07);
+}
+
+/* ── Ghost button ── */
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  border-radius: 9999px;
+  border: 1px solid rgba(232, 224, 200, 0.34);
+  padding: 0.8rem 1.75rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  color: var(--cream);
+  text-transform: uppercase;
+}
+
+/* ─────────────────────────────────────────
+   Staffing Needs Form — Meridiem-branded Zoho CRM form
+───────────────────────────────────────── */
+
+.staffing-form {
+  width: 100%;
+  max-width: 640px;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.1rem;
+}
+
+@media (max-width: 640px) {
+  .form-grid { grid-template-columns: 1fr; }
+}
+
+.field-group { display: flex; flex-direction: column; gap: 0.4rem; }
+.field-group.full-width { grid-column: 1 / -1; }
+
+.field-group label {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: #b8b4a8;
+  font-family: var(--font-jost), sans-serif;
+}
+
+.req-mark {
+  color: #c8a96e;
+  margin-left: 1px;
+}
+
+.opt-mark {
+  color: #6b6760;
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: 0;
+  font-size: 0.72rem;
+}
+
+.staffing-form input[type="text"],
+.staffing-form input[type="email"],
+.staffing-form input[type="tel"],
+.staffing-form input[type="url"],
+.staffing-form select,
+.staffing-form textarea {
+  width: 100%;
+  border-radius: 0.75rem;
+  border: 1px solid rgba(232, 224, 200, 0.14);
+  background: rgba(255, 255, 255, 0.035);
+  padding: 0.7rem 0.95rem;
+  color: #f5f2ea;
+  outline: none;
+  font-family: var(--font-jost), sans-serif;
+  font-size: 0.875rem;
+  font-weight: 300;
+  transition: border-color 0.15s, box-shadow 0.15s;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.staffing-form select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' fill='none'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23b8b4a8' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.9rem center;
+  padding-right: 2.2rem;
+  cursor: pointer;
+}
+
+.staffing-form select option {
+  background: #0c1128;
+  color: #f5f2ea;
+}
+
+.staffing-form input::placeholder,
+.staffing-form textarea::placeholder {
+  color: rgba(184, 180, 168, 0.4);
+}
+
+.staffing-form input:focus,
+.staffing-form select:focus,
+.staffing-form textarea:focus {
+  border-color: rgba(232, 224, 200, 0.42);
+  box-shadow: 0 0 0 3px rgba(232, 224, 200, 0.07);
+}
+
+.staffing-form textarea {
+  resize: vertical;
+  min-height: 110px;
+}
+
+.form-footer {
+  margin-top: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.form-submit {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  align-self: flex-start;
+  border-radius: 9999px;
+  background: linear-gradient(to right, #123880 0%, #0c2860 55%, #081c46 100%);
+  padding: 0.85rem 1.9rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  color: #fff;
+  text-transform: uppercase;
+  font-family: var(--font-jost), sans-serif;
+  cursor: pointer;
+  border: none;
+  transition: opacity 0.15s, box-shadow 0.15s;
+  box-shadow: 0 4px 24px rgba(10, 36, 90, 0.38), inset 0 1px 0 rgba(255,255,255,0.06);
+}
+.form-submit:hover {
+  opacity: 0.9;
+  box-shadow: 0 6px 30px rgba(10, 36, 90, 0.52), inset 0 1px 0 rgba(255,255,255,0.06);
+}
+
+.form-legal {
+  font-size: 0.7rem;
+  color: rgba(184, 180, 168, 0.55);
+  line-height: 1.5;
+  letter-spacing: 0.01em;
+}
+
+/* ─────────────────────────────────────────
+   Zoho CRM WebToLead form — brand overrides
+   External styling only. No Zoho logic touched.
+───────────────────────────────────────── */
+
+/* Wrapper card */
+#crmWebToEntityForm.zcwf_lblLeft {
+  background-color: #f8f3e4 !important;
+  color: #091929 !important;
+  max-width: 640px !important;
+  border-radius: 1.25rem !important;
+  padding: 2rem 2.25rem !important;
+  box-shadow: 0 2px 24px rgba(9, 25, 41, 0.10) !important;
+  margin: 0 auto !important;
+}
+
+/* All text inside the form */
+#crmWebToEntityForm,
+#crmWebToEntityForm * {
+  color: #091929 !important;
+  font-family: var(--font-jost), Arial, sans-serif !important;
+}
+
+/* Form title */
+#crmWebToEntityForm .zcwf_title {
+  font-size: 1.1rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.04em !important;
+  text-transform: uppercase !important;
+  color: #091929 !important;
+  padding: 0 0 1rem 0 !important;
+}
+
+/* Labels */
+#crmWebToEntityForm .zcwf_col_lab label {
+  font-size: 0.78rem !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.05em !important;
+  text-transform: uppercase !important;
+  color: #394452 !important;
+}
+
+/* Required asterisk */
+#crmWebToEntityForm .zcwf_col_lab span[style*="color:red"] {
+  color: #c0392b !important;
+}
+
+/* Text inputs and textarea */
+#crmWebToEntityForm .zcwf_col_fld input[type=text],
+#crmWebToEntityForm .zcwf_col_fld textarea {
+  width: 100% !important;
+  float: none !important;
+  display: block !important;
+  background: #ffffff !important;
+  border: 1px solid #e2d9c8 !important;
+  border-radius: 0.6rem !important;
+  padding: 0.6rem 0.85rem !important;
+  font-size: 0.9rem !important;
+  color: #091929 !important;
+  outline: none !important;
+  box-shadow: none !important;
+  transition: border-color 0.15s, box-shadow 0.15s !important;
+}
+#crmWebToEntityForm .zcwf_col_fld input[type=text]:focus,
+#crmWebToEntityForm .zcwf_col_fld textarea:focus {
+  border-color: #091929 !important;
+  box-shadow: 0 0 0 3px rgba(9, 25, 41, 0.08) !important;
+}
+
+/* Textarea min height */
+#crmWebToEntityForm .zcwf_col_fld textarea {
+  min-height: 100px !important;
+}
+
+/* Column layout — full-width stacked */
+#crmWebToEntityForm .zcwf_col_lab {
+  width: 100% !important;
+  float: none !important;
+  margin-right: 0 !important;
+  margin-bottom: 0.35rem !important;
+  margin-top: 0 !important;
+}
+#crmWebToEntityForm .zcwf_col_fld {
+  width: 100% !important;
+  float: none !important;
+  padding: 0 !important;
+  margin-top: 0 !important;
+}
+
+/* Row spacing */
+#crmWebToEntityForm .zcwf_row {
+  margin: 0 0 1.1rem 0 !important;
+}
+
+/* Submit button — pill, navy */
+#crmWebToEntityForm #formsubmit.formsubmit.zcwf_button,
+#crmWebToEntityForm input.formsubmit.zcwf_button {
+  background: #091929 !important;
+  color: #f8f3e4 !important;
+  border: none !important;
+  border-radius: 9999px !important;
+  padding: 0.65rem 2rem !important;
+  font-size: 0.82rem !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.1em !important;
+  text-transform: uppercase !important;
+  cursor: pointer !important;
+  max-width: none !important;
+  transition: background 0.15s, box-shadow 0.15s !important;
+  box-shadow: 0 2px 12px rgba(9, 25, 41, 0.30) !important;
+}
+#crmWebToEntityForm #formsubmit.formsubmit.zcwf_button:hover,
+#crmWebToEntityForm input.formsubmit.zcwf_button:hover {
+  background: #0d2235 !important;
+  box-shadow: 0 4px 18px rgba(9, 25, 41, 0.40) !important;
+}
+
+/* Reset button — minimal, barely visible */
+#crmWebToEntityForm input[type=reset].zcwf_button {
+  background: transparent !important;
+  border: 1px solid rgba(9, 25, 41, 0.18) !important;
+  border-radius: 9999px !important;
+  color: #7a8694 !important;
+  padding: 0.65rem 1.25rem !important;
+  font-size: 0.78rem !important;
+  font-weight: 400 !important;
+  letter-spacing: 0.06em !important;
+  cursor: pointer !important;
+  max-width: none !important;
+  box-shadow: none !important;
+}
+#crmWebToEntityForm input[type=reset].zcwf_button:hover {
+  border-color: rgba(9, 25, 41, 0.35) !important;
+  color: #394452 !important;
+}
+
+/* ─────────────────────────────────────────
+   Premium Motion & Animations (Luxury/SaaS style)
+───────────────────────────────────────── */
+
+/* ── Prevent animations for users with reduced motion preferences ── */
+@media (prefers-reduced-motion: no-preference) {
+
+  /* ── Hero ambient "Living" glow ── */
+  .hero-glow-layer {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+      radial-gradient(circle at 15% 25%, rgba(232, 224, 200, 0.05) 0%, rgba(13, 34, 76, 0.15) 30%, transparent 65%),
+      radial-gradient(circle at 85% 75%, rgba(200, 160, 110, 0.035) 0%, rgba(10, 20, 54, 0.18) 40%, transparent 75%);
+    mix-blend-mode: screen;
+    animation: hero-glow-shift 26s ease-in-out infinite alternate;
+    will-change: transform, opacity;
+  }
+
+  @keyframes hero-glow-shift {
+    0% {
+      transform: translate(0, 0) scale(1) rotate(0deg);
+      opacity: 0.7;
+    }
+    33% {
+      transform: translate(4%, -2%) scale(1.06) rotate(15deg);
+      opacity: 0.9;
+    }
+    66% {
+      transform: translate(-3%, 3%) scale(0.95) rotate(-10deg);
+      opacity: 0.6;
+    }
+    100% {
+      transform: translate(1%, -1%) scale(1.02) rotate(5deg);
+      opacity: 0.8;
+    }
+  }
+
+  /* ── Above-the-fold slide/fade-in transitions on mount ── */
+  .fade-in-up {
+    opacity: 0;
+    transform: translateY(18px);
+    animation: fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  @keyframes fadeInUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* ── Reveal base — visible by default, no transition until JS marks element ready ── */
+  /*
+   * IMPORTANT: transition is NOT on .reveal base. It is only on [data-reveal-ready]
+   * and .reveal-visible. This prevents a fade-out when JS sets data-reveal-ready
+   * (which would otherwise animate from opacity:1 → opacity:0). The JS code also
+   * temporarily sets transition:none inline before setting data-reveal-ready, then
+   * clears it — ensuring the snap to hidden is instant and only the reveal-in is animated.
+   */
+  .reveal {
+    will-change: opacity, transform;
+  }
+
+  /*
+   * JS (scroll-reveal.tsx) adds data-reveal-ready ONLY to below-fold elements.
+   * In-viewport elements are never hidden. Eliminates blank-section states.
+   * The transition here fires when reveal-visible is subsequently added.
+   */
+  .reveal[data-reveal-ready] {
+    opacity: 0;
+    transform: translateY(22px);
+    transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1), transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .reveal.reveal-scale[data-reveal-ready] {
+    opacity: 0;
+    transform: scale(0.97) translateY(10px);
+    transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1), transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .reveal.reveal-left[data-reveal-ready] {
+    opacity: 0;
+    transform: translateX(-24px);
+    transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1), transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .reveal.reveal-right[data-reveal-ready] {
+    opacity: 0;
+    transform: translateX(24px);
+    transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1), transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  /* ── Stagger Delays ── */
+  .delay-50   { animation-delay: 50ms;  transition-delay: 50ms; }
+  .delay-100  { animation-delay: 100ms; transition-delay: 100ms; }
+  .delay-150  { animation-delay: 150ms; transition-delay: 150ms; }
+  .delay-200  { animation-delay: 200ms; transition-delay: 200ms; }
+  .delay-250  { animation-delay: 250ms; transition-delay: 250ms; }
+  .delay-300  { animation-delay: 300ms; transition-delay: 300ms; }
+  .delay-350  { animation-delay: 350ms; transition-delay: 350ms; }
+  .delay-400  { animation-delay: 400ms; transition-delay: 400ms; }
+  .delay-450  { animation-delay: 450ms; transition-delay: 450ms; }
+  .delay-500  { animation-delay: 500ms; transition-delay: 500ms; }
+  .delay-600  { animation-delay: 600ms; transition-delay: 600ms; }
+  .delay-700  { animation-delay: 700ms; transition-delay: 700ms; }
+  .delay-800  { animation-delay: 800ms; transition-delay: 800ms; }
+
+  /* ── Service cards premium hover scaling ── */
+  .surface {
+    transition: border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1), background 0.4s cubic-bezier(0.16, 1, 0.3, 1), transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: transform, border-color, box-shadow;
+  }
+
+  .surface:hover {
+    border-color: rgba(232, 224, 200, 0.28);
+    transform: translateY(-3px);
+    box-shadow: 0 16px 40px rgba(1, 2, 8, 0.45);
+  }
+
+  /* ── Interactive service cards arrow sliding ── */
+  .surface.group {
+    cursor: pointer;
+  }
+
+  .surface.group p span.arrow {
+    display: inline-block;
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .surface.group:hover p span.arrow {
+    transform: translateX(4px);
+  }
+
+  /* ── Card-dark premium hover ── */
+  .card-dark {
+    transition: border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1), transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: transform, border-color, box-shadow;
+  }
+
+  .card-dark:hover {
+    border-color: rgba(232, 224, 200, 0.16) !important;
+    transform: translateY(-2px);
+    box-shadow: 0 12px 30px rgba(1, 2, 8, 0.35);
+  }
+
+  /* ── CTA Premium Hover — gold glow, slight lift, sweep ── */
+  .btn-primary, .btn-ghost {
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s, background 0.3s;
+    will-change: transform, box-shadow;
+  }
+
+  .btn-primary::after, .btn-ghost::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.08), transparent);
+    transform: translateX(-100%);
+    transition: transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .btn-primary:hover::after, .btn-ghost:hover::after {
+    transform: translateX(100%);
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 32px rgba(7, 27, 51, 0.6), 0 0 28px rgba(200, 169, 110, 0.15), inset 0 1px 0 rgba(255,255,255,0.08);
+  }
+
+  .btn-primary:active {
+    transform: translateY(0);
+  }
+
+  .btn-ghost:hover {
+    transform: translateY(-2px);
+    border-color: rgba(232, 224, 200, 0.55);
+    background: rgba(232, 224, 200, 0.06);
+    box-shadow: 0 0 24px rgba(200, 169, 110, 0.08);
+  }
+
+  .btn-ghost:active {
+    transform: translateY(0);
+  }
+}
+
+/* ── Reveal: visible state — applied by observer or fallback. ───────────────
+   Lives OUTSIDE the prefers-reduced-motion block so it always wins,
+   regardless of motion preference, and works as a no-JS visible fallback.
+──────────────────────────────────────────────────────────────────────────── */
+.reveal-visible {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+/* Button row */
+#crmWebToEntityForm .zcwf_col_fld:has(#formsubmit) {
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.75rem !important;
+  flex-wrap: wrap !important;
+  float: none !important;
+  width: 100% !important;
+  margin-top: 0.5rem !important;
+}
+
+/* Mobile responsive */
+@media (max-width: 600px) {
+  #crmWebToEntityForm.zcwf_lblLeft {
+    padding: 1.5rem 1.25rem !important;
+    border-radius: 1rem !important;
+  }
+}
+
+/* ── Step number pill ── */
+.step-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 2rem;
+  width: 2rem;
+  border-radius: 9999px;
+  border: 1px solid rgba(232, 224, 200, 0.2);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--cream);
+}
+
+/* ─────────────────────────────────────────
+   Premium polish: featured authority lift + feature cards + readable text
+───────────────────────────────────────── */
+
+/* Slightly elevated treatment for key authority surfaces that should pop against deep navy */
+.authority-surface {
+  border-color: rgba(232, 224, 200, 0.24);
+  box-shadow: 0 4px 32px rgba(1, 3, 12, 0.42);
+  background: linear-gradient(to right, rgba(17, 21, 48, 0.985) 0%, rgba(13, 17, 40, 0.99) 100%);
+}
+
+/* Lift contrast and hover on important feature/authority blocks already using card-dark or surface */
+.card-dark {
+  transition: border-color 260ms ease, transform 260ms ease, box-shadow 260ms ease;
+}
+.card-dark:hover {
+  border-color: rgba(232, 224, 200, 0.18);
+}
+
+/* Styling for the new high-quality interactive included cards */
+.feature-card {
+  transition: border-color 280ms cubic-bezier(0.16, 1, 0.3, 1), transform 280ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 280ms ease;
+  will-change: transform, border-color;
+}
+.feature-card:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 12px 30px rgba(2, 4, 14, 0.4);
+}
+.feature-card:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(232,224,200,0.25);
+}
+
+/* Gentle gold accent reinforcement on open feature detail area + section leads */
+.feature-card h4 {
+  color: #f5f2ea;
+}
+.feature-card p {
+  color: #c8c4b8;
+}
+
+/* ─────────────────────────────────────────
+   Light section gradient system
+   White (left) → warm cream (right).
+   Prevents stark pure-white sections; warms the
+   page environment toward the globe without a
+   visible two-tone split. Subtle — not a divide.
+   Three tokens for controlled variation:
+     .section-wc       primary (softest)
+     .section-wc-mid   midpoint sections
+     .section-wc-warm  slightly warmer variant
+───────────────────────────────────────── */
+.section-wc {
+  background: linear-gradient(
+    to right,
+    #ffffff 0%,
+    #fefcf9 30%,
+    #faf6ef 65%,
+    #f5efe2 100%
+  );
+}
+
+.section-wc-mid {
+  background: linear-gradient(
+    to right,
+    #fefefe 0%,
+    #fdfaf6 28%,
+    #f8f3ea 60%,
+    #f2ebe0 100%
+  );
+}
+
+.section-wc-warm {
+  background: linear-gradient(
+    to right,
+    #fdfdfb 0%,
+    #faf7f2 32%,
+    #f5efe4 66%,
+    #ede5d6 100%
+  );
+}
+
+/* Eyebrow labels for dark surfaces receive lifted contrast via variable + explicit overrides in JSX */
+
+/* ── Exit-intent popup animation ── */
+@keyframes fadeSlideUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px) scale(0.97);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Extra breathing room for authority-dense sections — easier to scan */
+.section-air {
+  padding-top: 3.5rem;
+  padding-bottom: 3.25rem;
+}
+
+@media (min-width: 768px) {
+  .section-air {
+    padding-top: 4.25rem;
+    padding-bottom: 4rem;
+  }
+}
+
+/* ─────────────────────────────────────────
+   Meridiem Premium Globe
+   The globe feels dimensional and environmental —
+   it supports the headline rather than competing.
+   CSS mask fades the sphere into the cream background.
+───────────────────────────────────────── */
+.meridiem-globe-wrap {
+  position: relative;
+  /* min-height removed — parent div provides explicit dimensions in env layout */
+  overflow: visible;
+  isolation: isolate;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  /*
+   * Atmospheric fade — left edge dissolves into the cream content area,
+   * right/top clipped by section overflow:hidden. Center at 54% (slightly
+   * right of centre) so the left-side fade is the prominent edge, blending
+   * naturally behind the headline text that overlaps from the left.
+   */
+  mask-image: radial-gradient(
+    ellipse 86% 90% at 54% 50%,
+    black 34%,
+    rgba(0,0,0,0.90) 50%,
+    rgba(0,0,0,0.52) 64%,
+    rgba(0,0,0,0.14) 76%,
+    transparent 88%
+  );
+  -webkit-mask-image: radial-gradient(
+    ellipse 86% 90% at 54% 50%,
+    black 34%,
+    rgba(0,0,0,0.90) 50%,
+    rgba(0,0,0,0.52) 64%,
+    rgba(0,0,0,0.14) 76%,
+    transparent 88%
+  );
+}
+
+.meridiem-globe-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  /* Premium asset — raised opacity now that the dimensional globe is in use */
+  opacity: 0.90;
+}
+
+/* Warm sunrise horizon glow — repositioned to east/right where sunrise arrives.
+   Complements the directional baked-in lighting on the new premium globe asset.
+   Removed the old left-side "North Atlantic" placement which created a stray
+   internal-light-leak appearance. This version reinforces the globe's own lighting. */
+.meridiem-sunrise {
+  position: absolute;
+  right: 4%;
+  top: 16%;
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(255, 232, 168, 0.55) 0%,
+    rgba(242, 185, 68, 0.22) 18%,
+    rgba(224, 152, 40, 0.06) 42%,
+    transparent 68%
+  );
+  filter: blur(2px);
+  mix-blend-mode: screen;
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Atmospheric depth — cool shadow on the left/west side (away from sunrise).
+   Supports the directional lighting: east is bright, west falls into shadow. */
+.meridiem-atmosphere {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at 18% 50%,
+    rgba(4, 10, 32, 0.22) 0%,
+    rgba(4, 10, 32, 0.06) 38%,
+    transparent 58%
+  );
+  pointer-events: none;
+  z-index: 3;
+}
+
+/* Globe ambient float */
+@keyframes globeFloat {
+  0%   { transform: translateY(0px);  }
+  50%  { transform: translateY(-4px); }
+  100% { transform: translateY(2px);  }
+}
+
+.globe-float {
+  animation: globeFloat 12s ease-in-out infinite alternate;
+}
+
+/* Fallback for WebGL canvas (legacy) */
+#meridiem-globe,
+.meridiem-globe-fallback {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: contain;
+}
+.meridiem-globe-fallback { display: none; padding: 4%; }
+
+@media (max-width: 900px) {
+  .meridiem-globe-wrap {
+    min-height: 500px;
+  }
+  .meridiem-sunrise {
+    right: 6%;
+    top: 12%;
+    width: 140px;
+    height: 140px;
+  }
+}
+
+@media (max-width: 520px) {
+  .meridiem-globe-wrap {
+    min-height: 360px;
+  }
+  .meridiem-sunrise {
+    width: 100px;
+    height: 100px;
+  }
+}
+
+/* ─────────────────────────────────────────
+   Editorial utilities
+───────────────────────────────────────── */
+
+.editorial-lead {
+  font-family: var(--font-cormorant), serif;
+  font-size: clamp(1.65rem, 3.5vw, 2.75rem);
+  line-height: 1.18;
+  font-weight: 400;
+  color: var(--text-primary);
+}
+
+/* Thin horizontal rule — full-width, fades at edges */
+.section-rule {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(232, 224, 200, 0.12) 25%,
+    rgba(232, 224, 200, 0.12) 75%,
+    transparent 100%
+  );
+  border: none;
+}
+
+/* ─────────────────────────────────────────
+   Operating-model tier diagram
+───────────────────────────────────────── */
+
+.tier-plane {
+  border: 1px solid var(--border);
+  border-radius: 0.75rem;
+  padding: 1.5rem 2rem;
+  background: linear-gradient(
+    to right,
+    rgba(15, 19, 44, 0.97) 0%,
+    rgba(8, 11, 28, 0.995) 100%
+  );
+}
+
+.tier-plane.tier-highlighted {
+  border-color: rgba(200, 169, 110, 0.35);
+  background: linear-gradient(
+    to right,
+    rgba(18, 23, 52, 0.99) 0%,
+    rgba(12, 16, 40, 1) 100%
+  );
+  box-shadow:
+    0 0 40px rgba(200, 169, 110, 0.055),
+    inset 0 1px 0 rgba(232, 224, 200, 0.07);
+}
+
+.tier-connector {
+  width: 1px;
+  height: 2.5rem;
+  background: linear-gradient(
+    to bottom,
+    rgba(232, 224, 200, 0.18),
+    rgba(232, 224, 200, 0.04)
+  );
+  margin: 0 auto;
+}
+
+/* ─────────────────────────────────────────
+   Nav dropdown
+───────────────────────────────────────── */
+
+.nav-dropdown {
+  background: #09152b;
+  border: 1px solid rgba(232, 224, 200, 0.11);
+  border-radius: 0.75rem;
+  box-shadow:
+    0 20px 56px rgba(1, 2, 12, 0.72),
+    0 4px 14px rgba(1, 2, 12, 0.42);
+  padding: 0.4rem;
+}
+
+.nav-dropdown-item {
+  padding: 0.7rem 1rem;
+  border-radius: 0.5rem;
+  transition: background 0.12s;
+  display: block;
+}
+
+.nav-dropdown-item:hover {
+  background: rgba(232, 224, 200, 0.055);
+}
+
+/* ─────────────────────────────────────────
+   Focus states — keyboard navigation
+───────────────────────────────────────── */
+
+:focus-visible {
+  outline: 2px solid rgba(232, 224, 200, 0.48);
+  outline-offset: 3px;
+}
+
+/* Tighten border-radius on pill / rounded elements */
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid rgba(232, 224, 200, 0.48);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* ─────────────────────────────────────────
+   Light-mode utilities (homepage & cream-bg sections)
+───────────────────────────────────────── */
+
+/* Light card surface — cream-white background */
+.surface-light {
+  background: #ffffff;
+  border: 1px solid rgba(10, 28, 46, 0.072);
+  border-radius: 1.25rem;
+  transition: border-color 0.28s ease, transform 0.28s ease, box-shadow 0.28s ease;
+}
+
+.surface-light:hover {
+  border-color: rgba(10, 28, 46, 0.14);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 36px rgba(10, 28, 46, 0.08);
+}
+
+/* Ghost button for light-background contexts — navy border + navy text */
+.btn-ghost-light {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  border-radius: 9999px;
+  border: 1px solid rgba(10, 28, 46, 0.28);
+  padding: 0.8rem 1.75rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  color: #0d1c2e;
+  text-transform: uppercase;
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.3s ease, background 0.3s ease, transform 0.3s ease;
+}
+
+.btn-ghost-light:hover {
+  border-color: rgba(10, 28, 46, 0.48);
+  background: rgba(10, 28, 46, 0.04);
+  transform: translateY(-1px);
+}
+
+/* Thin section rule — light-bg version (dark fade) */
+.section-rule-light {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(10, 28, 46, 0.09) 25%,
+    rgba(10, 28, 46, 0.09) 75%,
+    transparent 100%
+  );
+  border: none;
+}
+
+/* Thin gold accent line — for use on light backgrounds */
+.gold-accent {
+  background: linear-gradient(90deg, rgba(184, 136, 42, 0.7), rgba(184, 136, 42, 0));
+}
+
+/* Gold gradient text — for use on light backgrounds (avoids React shorthand/longhand conflict) */
+.gold-gradient-text {
+  background: linear-gradient(120deg, #b8882a 0%, #c8a040 55%, #9a7020 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Focus states on light pages */
+.page-light a:focus-visible,
+.page-light button:focus-visible {
+  outline: 2px solid rgba(10, 28, 46, 0.36);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
