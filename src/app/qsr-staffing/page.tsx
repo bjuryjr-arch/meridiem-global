@@ -46,7 +46,7 @@ const advantages = [
     body: "Meaningful payroll savings without sacrificing service quality or U.S. placement support.",
   },
   {
-    stat: "30 days",
+    stat: "Most placements are completed within 1–2 weeks, including candidate interviews and client selection.",
     label: "Average time to placement",
     body: "From strategy consultation to your first agent active on calls.",
   },

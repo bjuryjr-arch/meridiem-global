@@ -39,7 +39,7 @@ const outcomes = [
   { metric: "60–70%", label: "Reduction in RPM admin cost vs. U.S. hiring" },
   { metric: "3×",     label: "Increase in patient monitoring capacity" },
   { metric: "24/7",   label: "Monitoring coverage windows available" },
-  { metric: "30 days",label: "Average time from consultation to placement" },
+  { metric: "Most placements are completed within 1–2 weeks, including candidate interviews and client selection.",label: "Average time from consultation to placement" },
 ];
 
 const steps = [
